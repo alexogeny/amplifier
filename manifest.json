@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "name": "Amplifier",
+  "description": "Amplify the web (by visiting canonical pages)",
+  "short_name": "amplifier",
+  "author": "alexogeny",
+  "homepage_url": "https://github.com/alexogeny/amplifier",
+  "background": {
+    "scripts": [
+      "dist/navigationAmplifier.js"
+    ]
+  },
+  "icons": {
+    "512": "icons/flash512.png"
+  },
+  "incognito": "spanning",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_icon": "icons/flash512.png",
+    "default_title": "Amplifier"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "dist/htmlAmplifier.js"
+      ],
+      "matches": [
+        "*://*/*"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}

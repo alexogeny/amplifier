@@ -1,0 +1,58 @@
+{
+  "name": "amplifier",
+  "version": "1.0.0",
+  "description": "Amplify the web (by visiting canonical pages)",
+  "main": "amplifier.js",
+  "scripts": {
+    "build": "esbuild ./src/*.ts --bundle --outdir=dist",
+    "build:ext": "npm run build && web-ext build --ignore-files=\"src\" \"test\" \"coverage\" tsconfig.json package.json package-lock.json README.md LICENSE -o",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "test:coverage": "nyc npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexogeny/amplifier.git"
+  },
+  "keywords": [
+    "google",
+    "amp",
+    "canonical"
+  ],
+  "author": "alexogeny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexogeny/amplifier/issues"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "check-coverage": true,
+    "all": true,
+    "include": [
+      "src/**/!(*.test.*).[tj]s?(x)"
+    ],
+    "exclude": [
+      "src/_tests_/**/*.*",
+      "src/amplifier.ts"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "report-dir": "coverage"
+  },
+  "homepage": "https://github.com/alexogeny/amplifier#readme",
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@types/mocha": "^9.1.0",
+    "esbuild": "^0.14.36",
+    "mocha": "^9.2.2",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.7.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.6.3",
+    "web-ext": "^6.8.0",
+    "webextension-polyfill-ts": "^0.26.0"
+  }
+}
